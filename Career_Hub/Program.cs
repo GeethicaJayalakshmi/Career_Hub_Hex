@@ -24,8 +24,7 @@ namespace Career_Hub
                 Console.WriteLine("6. View Jobs by Company");
                 Console.WriteLine("7. Register Applicant");
                 Console.WriteLine("8. View All Applicants");
-                Console.WriteLine("9. Apply for a Job");
-                Console.WriteLine("10. View Applications by Job ID");
+                Console.WriteLine("9. View Applications by Job ID");
                 Console.WriteLine("0. Exit");
                 Console.Write("Enter your choice: ");
 
@@ -59,9 +58,6 @@ namespace Career_Hub
                             ViewAllApplicants();
                             break;
                         case 9:
-                            ApplyForJob();
-                            break;
-                        case 10:
                             ViewApplicationsByJob();
                             break;
                         case 0:
@@ -254,31 +250,6 @@ namespace Career_Hub
             Console.WriteLine("\nApplicants:");
             foreach (var a in applicants)
                 Console.WriteLine($"{a.ApplicantID}: {a.FirstName} {a.LastName} - {a.Email} - {a.Phone}");
-        }
-
-        static void ApplyForJob()
-        {
-            Console.WriteLine("Enter Application ID:");
-            int applicationID = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Job ID to apply for:");
-            int jobID = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Applicant ID:");
-            int applicantID = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Cover Letter:");
-            string coverLetter = Console.ReadLine();
-
-            JobApplication application = new JobApplication
-            {
-                ApplicationID = applicationID,
-                JobID = jobID,
-                ApplicantID = applicantID,
-                ApplicationDate = DateTime.Now,
-                CoverLetter = coverLetter
-            };
-
-            DBManager dbManager = new DBManager();
-            dbManager.SubmitApplication(application);
-            Console.WriteLine("Application submitted successfully.");
         }
 
         static void ViewApplicationsByJob()
